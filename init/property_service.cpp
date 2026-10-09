@@ -874,7 +874,7 @@ static void LoadPropertiesFromSecondStageRes(std::map<std::string, std::string>*
 // on runtime.
 static void update_sys_usb_config() {
     // emulators don't have USB, they enable adb another way.
-    const bool add_adb_func = android::base::GetBoolProperty("ro.adb.secure", false) &&
+    const bool add_adb_func = android::base::GetBoolProperty("ro.debuggable", false) &&
                               android::base::GetBoolProperty("ro.adb.has_usb", true);
 
     std::string config = android::base::GetProperty("persist.sys.usb.config", "");
@@ -1235,7 +1235,6 @@ static void SetSafetyNetProps() {
         {"vendor.boot.vbmeta.device_state", "locked"},
         {"vendor.boot.verifiedbootstate", "green"},
         {"oplusboot.verifiedbootstate", "green"},
-        {"sys.oem_unlock_allowed", "0"},
         {"ro.oem_unlock_supported", "0"},
         {"ro.crypto.state", "encrypted"},
         {"ro.boot.flash.locked", "1"},
